@@ -1,0 +1,40 @@
+[user]
+	email = arshcheglov@avito.ru
+	name = Artur Scheglov
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    ds = diff --staged
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    put = push origin HEAD
+    pu = push --force-with-lease
+
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+    ls = ls-files
+    unstage = reset HEAD
+
+    # Show files ignored by git:
+    ign = ls-files -o -i --exclude-standard
+	up = pull --rebase --autostash
+
+[core]
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[color]
+	ui = true
+[branch "master"]
+	rebase = true
+[push]
+	default = tracking
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
