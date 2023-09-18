@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# common things
+git config --global core.excludesFile ~/.dotfiles/config/git/.gitignore
+git config --global help.autoCorrect prompt
+git config --global init.defaultBranch main
+git config --global merge.conflictStyle zdiff3
+git config --global --bool push.autoSetupRemote true
+git config --global user.email arthur.shcheglov@gmail.com
+git config --global user.name 'Arthur Shcheglov'
+
+
+#
+# aliases
+#
+
+# working with commits
+git config --global alias.amend '!@ git-amend'
+git config --global alias.at '!@ git-at'
+git config --global alias.cmm '!@ git-commit'
+git config --global alias.contrib '!@ git-contrib'
+git config --global alias.it '!@ git-it'
+git config --global alias.undo '!@ git-undo'
+
+# working with stage
+git config --global alias.stst '!@ git-stst'
+git config --global alias.stsh '!@ git-stsh'
+git config --global alias.staash '!@ git-staash'
+git config --global alias.staaash '!@ git-staaash'
+
+git config --global alias.state "!echo Remotes && (git remote -v | grep 'fetch' | column -t) &&
+                                 (echo; git status) && (echo; echo Stash content) &&
+                                 (git stash list | grep . || echo -) &&
+                                 (echo; printf 'Latest release: '; git release || true)"
+
+git config --global alias.current "!git_current"
+git config --global alias.default "!git_default"
+
+git config --global alias.force "!git_force"
+git config --global alias.please "!git_please"
+git config --global alias.nah "!git reset --hard && git clean -df && git submodule deinit --all --force"
+
+git config --global alias.release "!git_current release"
