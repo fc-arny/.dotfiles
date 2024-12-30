@@ -1,9 +1,27 @@
 # 👉 Dotfiles
 
-My dotfiles for productive work insipried by @dreamsofautonomy and video https://www.youtube.com/watch?v=y6XCebnB9gs
+My dotfiles for productive work insipried by https://www.youtube.com/watch?v=y6XCebnB9gs (@dreamsofautonomy)
 
-## 📦 Installation (in progress)
-- Install stow 
+## Requirements
+Ensure you have the following installed on your system
+- homebrew
+- git 
+- stow 
+
+
+## 📦 Installation
+First check out the dotfiles repo in you $HOME directory using git
+
+```bash
+$ git clone git@github.com:fc-arny/dotfiles.git ~/.dotfiles
+$ cd ~/.dotfiles
+```
+
+then use GNU stow to create symlinks
+
+```bash
+$ stow .
+```
 
 ```bash
 $ curl -sSfL https://raw.githubusercontent.com/fc-arny/dotfiles/master/install | bash
