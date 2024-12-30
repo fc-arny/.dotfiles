@@ -1,8 +1,9 @@
 # 👉 Dotfiles
 
-My dotfiles for productive work insipried by @kamilsk
+My dotfiles for productive work insipried by @dreamsofautonomy and video https://www.youtube.com/watch?v=y6XCebnB9gs
 
-## 📦 Installation
+## 📦 Installation (in progress)
+- Install stow 
 
 ```bash
 $ curl -sSfL https://raw.githubusercontent.com/fc-arny/dotfiles/master/install | bash
@@ -10,8 +11,8 @@ $ curl -sSfL https://raw.githubusercontent.com/fc-arny/dotfiles/master/install |
 
 When you have it, just use `$ self-update` to sync it with the remote.
 
-## 📰 Articles
-
+## 📰 Articles/Videos
+- [Stow has forever changed the way I manage my dotfiles](https://www.youtube.com/watch?v=y6XCebnB9gs)
 - [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/index.html).
 - [Managing commit signature verification](https://docs.github.com/en/authentication/managing-commit-signature-verification).
 
@@ -21,3 +22,6 @@ When you have it, just use `$ self-update` to sync it with the remote.
 - [docker](https://www.docker.com)
 - [vim](https://www.vim.org)
 - [zsh](https://www.zsh.org)
+
+## 📋 TODO
+[] Try https://www.youtube.com/watch?v=Z8BL8mdzWHI
