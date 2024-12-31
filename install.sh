@@ -3,6 +3,10 @@
 set -euo pipefail
 
 root="${HOME}"/.dotfiles
+packages=( "tmux" "git" "zsh")
+
+# add zsh as a login shell
+# command -v zsh | sudo tee -a /etc/shells
 
 check() {
   if ! command -v git >/dev/null; then
@@ -18,21 +22,29 @@ check() {
   return 0
 }
 
-install-apps() {
-  return 0
-  # if [[ ! "$(uname)" =~ Darwin ]]; then return 0; fi
-
-  # pushd "${root}" || return 1
-  # echo Installing apps...
-  # toolset/Apps install
-  # popd
-  # return $?
+check-mac() {
+  if [[ ! "$(uname)" =~ Darwin ]]; then 
+    return 0; 
+  else
+    return 1; 
+  fi
 }
 
-install-clt() {
-  if [[ ! "$(uname)" =~ Darwin ]]; then return 0; fi
-  if command -v xcode-select >/dev/null; then return 0; fi
+# install-apps() {
+#   return 0
+#   # if [[ ! "$(uname)" =~ Darwin ]]; then return 0; fi
 
+#   # pushd "${root}" || return 1
+#   # echo Installing apps...
+#   # toolset/Apps install
+#   # popd
+#   # return $?
+# }
+
+install-clt() {
+  if check-mac; then return 0; fi
+
+  if command -v xcode-select >/dev/null; then return 0; fi
   echo Installing Command Line Tools for Xcode...
   xcode-select --install
   return $?
@@ -43,11 +55,13 @@ install-dotfiles() {
 
   echo Installing dotfiles...
   mkdir -p "${root}"
-  git clone git@github.com:fc-arny/dotfiles.git "${root}"
+  git clone git@github.com:fc-arny/.dotfiles.git "${root}"
   return $?
 }
 
 install-homebrew() {
+  if check-mac; then return 0; fi
+
   if command -v brew >/dev/null; then return 0; fi
 
   echo Installing Homebrew... # https://docs.brew.sh/Installation
@@ -66,39 +80,35 @@ install-homebrew() {
 }
 
 install-bundle() {
+  if check-mac; then return 0; fi
+
   echo Installing Homebrew bundle...
+  brew tap --repair
   brew update --force --quiet
-  brew bundle --file="${root}"/toolset/Brewfile --no-upgrade -v
-  brew bundle --file="${root}"/toolset/Brewfile cleanup -v
+  brew bundle --file="${root}"/mac/Brewfile --no-upgrade -v
+  brew bundle --file="${root}"/mac/Brewfile cleanup -v
   return $?
 }
 
-install-tools() {
-  pushd "${root}" || return 1
-  echo Installing tools...
-  make install
-  popd
-  return $?
-}
+# install-tools() {
+#   pushd "${root}" || return 1
+#   echo Installing tools...
+#   make install
+#   popd
+#   return $?
+# }
 
 integrate-cli() {
-  if command -v bash >/dev/null; then
-    local rc="${HOME}"/.bash_profile
-
-    if [ ! -f "${rc}" ] || ! grep -q "source '${root}'" "${rc}"; then
-      echo Integrating with Bash...
-      echo "source '${root}'/config/bash/.bash_profile" >>"${rc}"
+  for package in "${packages[@]}"; do
+    stow -t "$HOME" "$package"
+    if [ $? -eq 0 ]; then
+      echo "Package $package successfully installed"
+    else
+      echo "Error while installing package $package."
     fi
-  fi
+  done
 
   if command -v zsh >/dev/null; then
-    local rc="${HOME}"/.zshrc
-
-    if [ ! -f "${rc}" ] || ! grep -q "source '${root}'" "${rc}"; then
-      echo Integrating with Zsh...
-      echo "source '${root}'/config/zsh/.zshrc" >>"${rc}"
-    fi
-
     if [ ! -d "${HOME}/.oh-my-zsh" ]; then
       echo Installing Oh My Zsh...
       bash -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -109,10 +119,12 @@ integrate-cli() {
 }
 
 if ! check; then return 0; fi
+
 install-clt
 install-dotfiles
 install-homebrew
 install-bundle
-install-tools
-install-apps
+
+# install-tools
+# install-apps
 integrate-cli

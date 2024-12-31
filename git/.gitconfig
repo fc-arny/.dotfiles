@@ -1,0 +1,74 @@
+[user]
+	email = arshcheglov@avito.ru
+	name = Artur Scheglov
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    ds = diff --staged
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    put = push origin HEAD
+    pu = push --force-with-lease
+
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+    ls = ls-files
+    unstage = reset HEAD
+
+    # Show files ignored by git:
+    ign = ls-files -o -i --exclude-standard
+	up = pull --rebase --autostash
+	current = !git_current
+	default = !git_default
+	it = !@ git-it
+	cmm = !@ git-commit
+	commend = commit --amend --no-edit
+	undo = !@ git-undo
+	refresh = !git_refresh
+	shake = !git_shake
+	force = !git_force
+	please = !git_please
+	start = !git_start jira
+	stop = !git_stop
+	progress = "!commit() { git commit -m  \"$(git current | awk -F- '{print $1\"-\"$2}') $*\"; }; commit"
+	issue = !open https://jr.avito.ru/browse/$(git current | awk -F- '{print $1\"-\"$2}')
+	done = !git_done
+	amend = !@ git-amend
+	at = !@ git-at
+	contrib = !@ git-contrib
+	stst = !@ git-stst
+	stsh = !@ git-stsh
+	staash = !@ git-staash
+	staaash = !@ git-staaash
+	state = "!echo Remotes && (git remote -v | grep 'fetch' | column -t) &&\n                                 (echo; git status) && (echo; echo Stash content) &&\n                                 (git stash list | grep . || echo -) &&\n                                 (echo; printf 'Latest release: '; git release || true)"
+	nah = !git reset --hard && git clean -df && git submodule deinit --all --force
+	release = !git_current release
+
+[core]
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	compression = 0
+	excludesFile = /Users/arshcheglov/.dotfiles/config/git/.gitignore
+[color]
+	ui = true
+[branch "master"]
+	rebase = true
+[push]
+	default = tracking
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[help]
+	autoCorrect = prompt
+[init]
+	defaultBranch = main
+[merge]
+	conflictStyle = zdiff3
