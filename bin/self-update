@@ -113,7 +113,7 @@ for update in "${UPDATE[@]}"; do
   eval "${update}"
 done
 
-(cd "${root}" && git reset --hard) # clean up
+# TODO: open clen up -> (cd "${root}" && git reset --hard) # clean up
 
 case $(basename "${SHELL}") in
 bash)

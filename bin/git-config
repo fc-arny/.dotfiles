@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # common things
-git config --global core.excludesFile ~/.dotfiles/config/git/.gitignore
+git config --global core.excludesFile ~/.dotfiles/git/.gitignore
 git config --global help.autoCorrect prompt
 git config --global init.defaultBranch main
 git config --global merge.conflictStyle zdiff3

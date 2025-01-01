@@ -7,11 +7,13 @@ DATE  := $(shell date +%Y-%m-%dT%T%Z)
 SHELL := /usr/bin/env bash -euo pipefail -c
 
 .PHONY: install
+install:
+	$(AT) bash install
 
 todo:
 	$(AT) grep \
 		--exclude=Makefile \
-		--exclude-dir={./test/bats,./test/helper} \
+		--exclude-dir={./test/bats,./test/helper,.git} \
 		--color \
 		--text \
 		-inRo -E 'TODO:.*' . || true

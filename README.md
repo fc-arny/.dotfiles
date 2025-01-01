@@ -19,7 +19,7 @@ Ensure you have the following installed on your system
 1) Install all necessary dependencies
 
 ```bash
-$ curl -sSfL https://raw.githubusercontent.com/fc-arny/.dotfiles/master/install.sh | bash
+$ curl -sSfL https://raw.githubusercontent.com/fc-arny/.dotfiles/master/install | bash
 ```
 
 2) Check out the dotfiles repo in you $HOME directory using git
