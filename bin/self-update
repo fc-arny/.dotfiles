@@ -57,16 +57,16 @@ function clean_tools() {
   fi
 }
 
-function update_tools() {
-  if command -v go >/dev/null; then
-    clean_tools
-    (
-      cd "${root}"/toolset || return 1
-      go mod download && go generate tools.go
-      echo tools were installed
-    )
-  fi
-}
+# function update_tools() {
+#   if command -v go >/dev/null; then
+#     clean_tools
+#     (
+#       cd "${root}"/toolset || return 1
+#       go mod download && go generate tools.go
+#       echo tools were installed
+#     )
+#   fi
+# }
 
 function update_zsh() {
   if [ -n "${ZSH-}" ] && [ -f "${ZSH}"/tools/upgrade.sh ]; then

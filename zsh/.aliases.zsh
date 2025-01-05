@@ -16,6 +16,8 @@ alias vimrc='vim ${HOME}/.config/nvim/init.vim'
 alias cat='bat'
 # colored ls output
 alias ls='ls -al --color'
+# jless for yaml files
+alias yless="jless --yaml"
 
 # Crypto
 alias md5='openssl md5'

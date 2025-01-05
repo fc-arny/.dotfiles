@@ -49,4 +49,5 @@ Insipried by @dreamsofautonomy.
 2) Update package variable at ./install.sh file adding new package
 
 ## 📋 TODO
-- Try https://www.youtube.com/watch?v=Z8BL8mdzWHI
+- Research https://www.youtube.com/watch?v=Z8BL8mdzWHI
+- Research https://github.com/sobolevn/dotfiles/tree/master 
