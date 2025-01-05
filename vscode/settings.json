@@ -1,0 +1,173 @@
+{
+    "files.associations": {
+        "Dockerfile.*": "dockerfile",
+        "*.html": "twig"
+    },
+    "editor.renderControlCharacters": true,
+    "editor.minimap.enabled": false,
+    "go.coverOnSave": true,
+    "go.gocodeAutoBuild": true,
+    "go.gotoSymbol.includeImports": true,
+    "breadcrumbs.enabled": true,
+    "files.autoSaveDelay": 1000,
+    "files.autoSave": "afterDelay",
+    "git.enableCommitSigning": true,
+    "workbench.colorCustomizations": {},
+    "editor.renderWhitespace": "all",
+    "files.exclude": {
+        "**/.idea": true
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "extensions.ignoreRecommendations": false,
+    "problems.decorations.enabled": false,
+    // "go.inferGopath": true,
+    
+
+    // Go-related settings for Go modules and gopls
+    // =========================
+    "go.autocompleteUnimportedPackages": true,
+    "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+    "go.docsTool": "godoc",
+    "go.formatTool": "gofmt",
+    "go.formatFlags": [ // I use standard 'goimports', but if you want, you can use Avito fork and add more flags here
+        "--local=go.avito.ru/yourteam/yourproject"
+    ],
+    // I suggest either golangci-lint or revive, see related configs in this repo
+    "go.lintTool": "golangci-lint",
+    // "go.lintTool": "revive",
+    "go.lintFlags": [
+        "--config=$YOUR_CONFIG_FOLDER/.golangci.yml"
+        // "--config=$YOUR_CONFIG_FOLDER/revive.toml"
+    ],
+    "go.toolsEnvVars": {
+        "GO111MODULE": "on",
+      	"GOFLAGS": "-mod=vendor", // to work with "vendor" folder in Avito projects
+    },
+    "go.buildOnSave": "off",
+    "go.vetOnSave": "off",
+    "go.lintOnSave": "package", // pick "workspace" if your project is small or you're using revive
+    "go.coverageDecorator": {
+        "type": "gutter"
+    },
+    "go.testFlags": [
+        "-v",
+        "-cover",
+        // "-count=1", // enable this to disable test caching
+    ],
+    "go.addTags": {
+        "tags": "json",
+        "promptForTags": false,
+        "transform": "snakecase",
+        "options": "",
+    },
+    "go.enableCodeLens": {
+        // "references": false,
+        "runtest": true
+    },
+    "go.useLanguageServer": true,
+    "go.languageServerExperimentalFeatures": {
+        "autoComplete": true,
+        "diagnostics": true,
+        "documentLink": false, // to stop showing imports as the URLs to godoc
+        "documentSymbols": true,
+        "findReferences": true,
+        "format": false, // this is required to stop gopls formatting and to use goimports directly with --local flag from the settings above
+        "goToDefinition": true,
+        "goToTypeDefinition": true,
+        "highlight": true,
+        "hover": true,
+        "incrementalSync": true,
+        "rename": true,
+        "signatureHelp": true,
+        "workspaceSymbols": true,
+    },
+    "gopls": {
+        "usePlaceholders": true, // add parameter placeholders when completing a function
+		"staticcheck": false, // enable to add staticcheck linter capabilities if you don't want to use golangci-lint or revive
+        // Experimental settings
+        "completeUnimported": true, // autocomplete unimported packages
+        "deepCompletion": true, // enable deep completion
+    },
+    "[go]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        // "editor.codeActionsOnSaveTimeout": 3000,
+        "editor.defaultFormatter": "golang.go",
+        "editor.snippetSuggestions": "inline",
+    },
+
+    "explorer.sortOrder": "type",
+    "material-icon-theme.activeIconPack": "react",
+   
+    
+
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "search.exclude": {
+        "**/var/cache/**": true
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "[html]": {
+        
+    },
+    "files.watcherExclude": {
+        "**/var/cache/**": true
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "mikeburgh.xml-format"
+    },
+    "rest-client.environmentVariables": {
+        "debug": {
+            "swaha": "127.0.0.1:8890"
+        },
+
+        "local": {
+            "attribute-ranger-host": "attribute-ranger.avito.dev",
+            "search-filters-host": "search-filters.avito.dev",
+            "serp": "serp.avito.dev",
+            "autodealer": "autodealer.avito.dev",
+            "swaha": "swaha.avito.dev"
+        },
+        "staging": {
+            "attribute-ranger-host": "staging.k.avito.ru/service-attribute-ranger",
+            "search-filters-host": "staging.k.avito.ru/service-search-filters",
+            "serp": "http://staging.k.avito.ru/service-serp",
+            "autodealer": "http://staging.k.avito.ru/service-autodealer",
+            "swaha": "http://staging.k.avito.ru/service-swaha"
+        }
+    },
+    "explorer.confirmDragAndDrop": false,
+    "editor.tabSize": 2,
+    "go.coverOnSingleTest": true,
+    "go.coverOnSingleTestFile": true,
+    "go.installDependenciesWhenBuilding": false,
+    "vsnotes.defaultNotePath": "/Users/arshcheglov/Development/avito",
+    "go.delveConfig": {
+
+        "dlvLoadConfig": {
+            "followPointers": true,
+            "maxVariableRecurse": 1,
+            "maxStringLen": 512,
+            "maxArrayValues": 64,
+            "maxStructFields": -1
+        },
+        "apiVersion": 2,
+        "showGlobalVariables": true
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "bracketPairColorizer.depreciation-notice": false,
+    "go.toolsManagement.autoUpdate": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "tabnine.experimentalAutoImports": true,
+    "workbench.activityBar.location": "top",
+    "makefile.configureOnOpen": true,
+    "go.alternateTools": {
+
+    },
+    "settingsSync.ignoredSettings": [
+        
+    ]
+}
