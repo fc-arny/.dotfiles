@@ -19,7 +19,7 @@ Ensure you have the following installed on your system
 1) Install all necessary dependencies
 
 ```bash
-$ curl -sSfL https://raw.githubusercontent.com/fc-arny/.dotfiles/master/install.sh | bash
+$ curl -sSfL https://raw.githubusercontent.com/fc-arny/.dotfiles/master/install | bash
 ```
 
 2) Check out the dotfiles repo in you $HOME directory using git
@@ -49,4 +49,5 @@ Insipried by @dreamsofautonomy.
 2) Update package variable at ./install.sh file adding new package
 
 ## 📋 TODO
-- Try https://www.youtube.com/watch?v=Z8BL8mdzWHI
+- Research https://www.youtube.com/watch?v=Z8BL8mdzWHI
+- Research https://github.com/sobolevn/dotfiles/tree/master 

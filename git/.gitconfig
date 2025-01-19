@@ -47,9 +47,10 @@
 	release = !git_current release
 
 [core]
-    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	compression = 0
 	excludesFile = /Users/arshcheglov/.dotfiles/config/git/.gitignore
+	quotePath = false
 [color]
 	ui = true
 [branch "master"]

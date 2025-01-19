@@ -3,7 +3,8 @@
 set -euo pipefail
 
 root="${HOME}"/.dotfiles
-packages=( "tmux" "git" "zsh")
+packages=("tmux" "git" "zsh")
+
 
 # add zsh as a login shell
 # command -v zsh | sudo tee -a /etc/shells
@@ -29,6 +30,35 @@ check-mac() {
     return 1; 
   fi
 }
+
+backup() {
+  target=$1
+  if [ -e "$target" ]; then
+    if [ ! -L "$target" ]; then
+      mv "$target" "$target.backup"
+      echo "-----> Moved your old $target config file to $target.backup"
+    fi
+  fi
+}
+
+symlink() {
+  file=$1
+  link=$2
+  if [ ! -e "$link" ]; then
+    echo "-----> Symlinking your new $link"
+    ln -s $file $link
+  fi
+}
+
+install-code() {
+  CODE_PATH=~/Library/Application\ Support/Code/User
+  for name in settings.json keybindings.json; do
+    target="$CODE_PATH/$name"
+    backup $target
+    symlink $PWD/$name $target
+  done
+}
+
 
 # install-apps() {
 #   return 0
@@ -85,8 +115,8 @@ install-bundle() {
   echo Installing Homebrew bundle...
   brew tap --repair
   brew update --force --quiet
-  brew bundle --file="${root}"/mac/Brewfile --no-upgrade -v
-  brew bundle --file="${root}"/mac/Brewfile cleanup -v
+  brew bundle --file="${root}"/toolset/Brewfile --no-upgrade -v
+  brew bundle --file="${root}"/toolset/Brewfile cleanup -v
   return $?
 }
 
@@ -120,11 +150,12 @@ integrate-cli() {
 
 if ! check; then return 0; fi
 
-install-clt
-install-dotfiles
-install-homebrew
-install-bundle
+# install-clt
+# install-dotfiles
+# install-homebrew
+# install-bundle
 
-# install-tools
-# install-apps
-integrate-cli
+# # install-tools
+# # install-apps
+# integrate-cli
+install-code

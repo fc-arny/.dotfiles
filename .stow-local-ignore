@@ -23,8 +23,6 @@ _darcs
 \.DS_Store
 
 bin
-config
-toolset
 install
 ^/Makefile
 ^/README.*
