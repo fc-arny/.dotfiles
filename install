@@ -72,8 +72,10 @@ install-code() {
 # }
 
 install-clt() {
+  echo "Check mac \n"
   if check-mac; then return 0; fi
 
+  echo "Its's mac \n"
   if command -v xcode-select >/dev/null; then return 0; fi
   echo Installing Command Line Tools for Xcode...
   xcode-select --install
