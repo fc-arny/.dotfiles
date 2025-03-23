@@ -150,12 +150,12 @@ integrate-cli() {
 
 if ! check; then return 0; fi
 
-# install-clt
-# install-dotfiles
-# install-homebrew
-# install-bundle
+install-clt
+install-dotfiles
+install-homebrew
+install-bundle
 
 # # install-tools
 # # install-apps
-# integrate-cli
+integrate-cli
 install-code
