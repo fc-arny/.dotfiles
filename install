@@ -1,13 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -i
 
 set -euo pipefail
 
 root="${HOME}"/.dotfiles
 packages=("tmux" "git" "zsh")
-
-
-# add zsh as a login shell
-# command -v zsh | sudo tee -a /etc/shells
 
 check() {
   if ! command -v git >/dev/null; then
@@ -60,17 +56,6 @@ install-code() {
 }
 
 
-# install-apps() {
-#   return 0
-#   # if [[ ! "$(uname)" =~ Darwin ]]; then return 0; fi
-
-#   # pushd "${root}" || return 1
-#   # echo Installing apps...
-#   # toolset/Apps install
-#   # popd
-#   # return $?
-# }
-
 install-clt() {
   echo "Check mac \n"
   if check-mac; then return 0; fi
@@ -122,14 +107,6 @@ install-bundle() {
   return $?
 }
 
-# install-tools() {
-#   pushd "${root}" || return 1
-#   echo Installing tools...
-#   make install
-#   popd
-#   return $?
-# }
-
 integrate-cli() {
   for package in "${packages[@]}"; do
     stow -t "$HOME" "$package"
@@ -147,6 +124,9 @@ integrate-cli() {
     fi
   fi
 
+  # add zsh as a login shell
+  command -v zsh | sudo tee -a /etc/shells
+
   return 0
 }
 
@@ -157,7 +137,5 @@ install-dotfiles
 install-homebrew
 install-bundle
 
-# # install-tools
-# # install-apps
 integrate-cli
 install-code
