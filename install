@@ -3,7 +3,7 @@
 set -euo pipefail
 
 root="${HOME}"/.dotfiles
-packages=("tmux" "git" "zsh")
+packages=("tmux" "git" "zsh" "bat")
 
 check() {
   if ! command -v git >/dev/null; then
@@ -19,12 +19,8 @@ check() {
   return 0
 }
 
-check-mac() {
-  if [[ ! "$(uname)" =~ Darwin ]]; then 
-    return 0; 
-  else
-    return 1; 
-  fi
+is-mac() {
+  [[ "$(uname)" =~ Darwin ]]
 }
 
 backup() {
@@ -42,7 +38,7 @@ symlink() {
   link=$2
   if [ ! -e "$link" ]; then
     echo "-----> Symlinking your new $link"
-    ln -s $file $link
+    ln -s "$file" "$link"
   fi
 }
 
@@ -50,14 +46,14 @@ install-code() {
   CODE_PATH=~/Library/Application\ Support/Code/User
   for name in settings.json keybindings.json; do
     target="$CODE_PATH/$name"
-    backup $target
-    symlink $PWD/$name $target
+    backup "$target"
+    symlink "$root/vscode/$name" "$target"
   done
 }
 
 
 install-clt() {
-  if check-mac; then return 0; fi
+  if ! is-mac; then return 0; fi
 
   if command -v xcode-select >/dev/null; then return 0; fi
   echo Installing Command Line Tools for Xcode...
@@ -75,13 +71,13 @@ install-dotfiles() {
 }
 
 install-homebrew() {
-  if check-mac; then return 0; fi
+  if ! is-mac; then return 0; fi
 
   if command -v brew >/dev/null; then return 0; fi
 
   echo Installing Homebrew... # https://docs.brew.sh/Installation
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  local bin
+  local bin=""
   if [ -x '/usr/local/bin/brew' ]; then bin='/usr/local/bin/brew'; fi
   if [ -x '/opt/homebrew/bin/brew' ]; then bin='/opt/homebrew/bin/brew'; fi
   if [ -x '/home/linuxbrew/.linuxbrew/bin/brew' ]; then bin='/home/linuxbrew/.linuxbrew/bin/brew'; fi
@@ -95,7 +91,7 @@ install-homebrew() {
 }
 
 install-bundle() {
-  if check-mac; then return 0; fi
+  if ! is-mac; then return 0; fi
 
   echo Installing Homebrew bundle...
   brew tap --repair
@@ -123,17 +119,20 @@ integrate-cli() {
   fi
 
   # add zsh as a login shell
-  command -v zsh | sudo tee -a /etc/shells
+  local zsh_path
+  zsh_path="$(command -v zsh)"
+  if ! grep -qxF "$zsh_path" /etc/shells; then
+    echo "$zsh_path" | sudo tee -a /etc/shells
+  fi
 
   return 0
 }
 
-if ! check; then return 0; fi
+if ! check; then exit 1; fi
 
 install-clt
 install-dotfiles
 install-homebrew
 install-bundle
-
 integrate-cli
 install-code

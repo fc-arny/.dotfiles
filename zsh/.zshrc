@@ -12,7 +12,7 @@ if [ -f ~/.aliases.zsh ]; then
     source ~/.aliases.zsh
 fi
 
-# Environment 
+# Environment
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$HOME/.oh-my-zsh
 
@@ -21,7 +21,7 @@ export ZSH=$HOME/.oh-my-zsh
 export NVM_DIR=${HOME}/.nvm
 export NVM_COMPLETION=true
 
-# PATH 
+# PATH
 _extend_path() { # Extend $PATH without duplicates
   [[ -d "$1" ]] || return
 
@@ -40,7 +40,7 @@ _extend_path "$DOTFILES/bin"
 
 # PLUGINS via antidote
 source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
-antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh 
+antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 
 # Settings
 zstyle ':omz:update' mode disabled
@@ -62,18 +62,18 @@ export CLICOLOR=1
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1"
 
+# BAT
 export BAT_THEME="gruvbox-dark"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+# Powerlevel10k
+source $(brew --prefix powerlevel10k)/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# NVM (Homebrew)
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-
-# 
+# Source bash libraries
 for script in "${DOTFILES}"/bin/lib/*.bash; do
   source "${script}"
 done

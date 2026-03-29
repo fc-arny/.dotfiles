@@ -1,7 +1,7 @@
 # https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 
-tap "homebrew/bundle"
 tap "buo/cask-upgrade"
+tap "goreleaser/tap"
 
 # Console
 brew "antidote"
@@ -12,6 +12,7 @@ brew "difftastic"
 brew "fish"
 brew "git"
 brew "git-delta"
+brew "git-filter-repo"
 brew "git-lfs"
 brew "gh"
 brew "grpcurl"
@@ -21,23 +22,55 @@ brew "jless"
 brew "jid"
 brew "jq"
 brew "mas"
+brew "mtr"
 brew "neovim"
 brew "nushell"
 brew "powerlevel10k"
 brew "restic"
+brew "rtmpdump"
 brew "stow"
 brew "tmux"
 brew "trash"
 brew "tree"
+brew "tree-sitter"
 brew "wget"
 brew "zsh"
 brew "zsh-completions"
 
-# OSX Apps
+# Third-party CLI tools
+brew "batchcorp/public/plumber"
+brew "isacikgoz/taps/gitbatch"
+brew "isacikgoz/taps/gitin"
+brew "isacikgoz/taps/tldr"
+brew "rs/tap/curlie"
+brew "traefik/tap/yaegi"
+
+# Languages, protocols, tools
+brew "go"
+brew "python@3.13"
+brew "pipx"
+brew "ruby"
+brew "protobuf"
+brew "nvm"
+
+# Containers
+brew "docker"
+brew "docker-buildx"
+brew "docker-compose"
+brew "docker-credential-helper"
+brew "skaffold"
+brew "lima"
+brew "lima-additional-guestagents"
+brew "helm"
+brew "kubectx"
+brew "kubernetes-cli"
+
+# macOS Apps
 cask "arc"
 cask "charles"
 cask "cleanmymac"
 cask "dash"
+cask "goreleaser"
 cask "iterm2"
 cask "obsidian"
 cask "osquery"
@@ -45,29 +78,16 @@ cask "visual-studio-code"
 cask "wireshark"
 cask "zoom"
 
-brew "batchcorp/public/plumber"
-brew "goreleaser/tap/goreleaser"
-brew "isacikgoz/taps/gitbatch"
-brew "isacikgoz/taps/gitin"
-brew "isacikgoz/taps/tldr"
-brew "mergestat/mergestat/mergestat"
-brew "rs/tap/curlie"
-brew "traefik/tap/yaegi"
-
-# Languages, protocols, tools
-brew "python"
-brew "pipx"
-brew "ruby"
-brew "go"
-brew "protobuf"
-brew "nvm"
-
-# Containers
-brew "docker"
-brew "docker-compose"
-brew "docker-credential-helper"
-brew "skaffold"
-brew "lima"
-brew "helm"
-brew "kubectx"
-brew "kubernetes-cli"
+# Mac App Store
+mas "Kindle", id: 302584613
+mas "WhatsApp", id: 310633997
+mas "Keynote", id: 409183694
+mas "Pages", id: 409201541
+mas "Dashlane", id: 517914548
+mas "Developer", id: 640199958
+mas "RAR Extractor - Unarchiver", id: 646295438
+mas "PDF Reader X", id: 684812309
+mas "Telegram", id: 747648890
+mas "Things", id: 904280696
+mas "Whisper Transcription", id: 1668083311
+mas "AmneziaWG", id: 6478942365

@@ -24,5 +24,8 @@ _darcs
 
 bin
 install
+toolset
+^/CLAUDE\.md
 ^/Makefile
 ^/README.*
+^/MEMORY\.md

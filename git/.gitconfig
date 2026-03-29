@@ -1,6 +1,9 @@
-[user]
-	email = arshcheglov@avito.ru
-	name = Artur Scheglov
+[include]
+	path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/Development/avito/"]
+	path = ~/.gitconfig-work
+
 [alias]
 	st = status
 	ci = commit
@@ -10,11 +13,11 @@
 	ds = diff --staged
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	put = push origin HEAD
-	pu = push --force-with-lease	
+	pu = push --force-with-lease
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
 	ls = ls-files
-	unstage = reset HEAD	
+	unstage = reset HEAD
 	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
 	up = pull --rebase --autostash
@@ -45,29 +48,51 @@
 	release = !git_current release
 
 [core]
-	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	compression = 0
-	excludesFile = /Users/arshcheglov/.dotfiles/config/git/.gitignore
+	excludesFile = ~/.dotfiles/git/.gitignore
 	quotePath = false
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = gruvbox-dark
+
 [color]
 	ui = true
+
 [branch "master"]
 	rebase = true
+
 [push]
 	default = tracking
 	autoSetupRemote = true
+
 [pull]
 	rebase = true
+
 [rebase]
 	autoStash = true
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
 [help]
 	autoCorrect = prompt
+
 [init]
 	defaultBranch = master
+
 [merge]
 	conflictStyle = zdiff3
+
+[diff]
+	colorMoved = default

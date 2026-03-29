@@ -3,3 +3,8 @@
 .vagrant
 .virtenv
 .vscode
+*.swp
+*.swo
+*~
+.env
+.env.local
